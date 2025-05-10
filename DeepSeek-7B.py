@@ -4,8 +4,8 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Define input and output paths
-input_root = "multiple/"
-output_root = "deepseek-7b-result+kp/"
+input_root = "/home/ycblena/LLM-reasoning/multiple/"
+output_root = "/home/ycblena/LLM-reasoning/deepseek-7b-result+kp/"
 
 # Make sure output root exists
 os.makedirs(output_root, exist_ok=True)
