@@ -3,6 +3,9 @@ from pathlib import Path
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+import os
+os.environ["PYTORCH_SDP_ATTENTION"] = "0"
+
 # Define input and output paths
 input_root = "multiple/"
 output_root = "gemma3-4B-result+kp+trans/"
