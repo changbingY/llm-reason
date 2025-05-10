@@ -67,7 +67,7 @@ for root, _, files in os.walk(input_root):
                     print(f"\nPrompt from {file_path}:\n", prompt)
                     f_out.write(prompt)
                    
-                    model_inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+                    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
                     generate_ids = model.generate(inputs.input_ids, max_length=30)
                     response  = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
                     
