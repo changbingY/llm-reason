@@ -66,11 +66,10 @@ for root, _, files in os.walk(input_root):
                     )
                     print(f"\nPrompt from {file_path}:\n", prompt)
                     f_out.write(prompt)
-                    messages = [{"role": "user", "content": prompt}]
-                    text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-                    model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
-                    generated_ids = model.generate(**model_inputs, max_new_tokens=512)
-                    generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)]
-                    response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+                   
+                    model_inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+                    generate_ids = model.generate(inputs.input_ids, max_length=30)
+                    response  = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+                    
                     print("Model response:\n", response)
                     f_out.write('deepseek-7B result: ' + response + '\n\n')
