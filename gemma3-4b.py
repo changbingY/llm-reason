@@ -23,7 +23,10 @@ languages = {
 
 import subprocess
 
-!huggingface-cli login --token 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
+###!huggingface-cli login --token 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
+import os
+
+os.environ["HUGGINGFACE_HUB_TOKEN"] = "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"
 
 # Load model directly
 from transformers import AutoProcessor, AutoModelForImageTextToText
