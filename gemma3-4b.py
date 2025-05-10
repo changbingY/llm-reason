@@ -46,11 +46,11 @@ model_name = "google/gemma-3-4b-it"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype=torch.float16,
+    torch_dtype=torch.bfloat16,
     device_map="auto"
 )
 
-
+CUDA_LAUNCH_BLOCKING=1
 # Helper: extract language from file path
 def extract_language(filepath):
     parts = Path(filepath).parts
@@ -99,4 +99,4 @@ for root, _, files in os.walk(input_root):
                     generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)]
                     response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
                     print("Model response:\n", response)
-                    f_out.write('Gemma3-4B result: ' + response + '\n')
+                    f_out.write('Gemma3-4B result: ' + response + '\n\n')
