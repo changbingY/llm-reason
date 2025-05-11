@@ -29,9 +29,9 @@ bnb_config = BitsAndBytesConfig(
     bnb_4bit_quant_type="nf4"
 )
 
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-32B-Instruct-GPTQ-Int4")
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-32B-Instruct-GPTQ-Int8")
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen2.5-32B-Instruct-GPTQ-Int4",
+    "Qwen/Qwen2.5-32B-Instruct-GPTQ-Int8",
     device_map="auto",
     quantization_config=bnb_config
 )
